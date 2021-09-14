@@ -140,7 +140,7 @@
                         </div>
 
                         <br>
-                        <center><input type="submit" value="GUARDAR DATOS" name="guardar" class="btn btn-dark"
+                        <center><input onclick="post()" value="GUARDAR DATOS" name="guardar" class="btn btn-dark"
                                 </center>
                     </form>
                     </main>
@@ -151,11 +151,13 @@
     </div>
 </x-app-layout>
 <script>
+
     'use strict';
     const video = document.getElementById('video');
     const video2 = document.getElementById('remoteVideo');
     const video3 = document.getElementById('remoteVideo2');
     const canvas = document.getElementById('canvas');
+    var img = new Image(); 
     const canvas2 = document.getElementById('canvas2');
     const canvas3 = document.getElementById('canvas3');
     const snap = document.getElementById("snap");
@@ -191,6 +193,7 @@
         context.filter = "brightness("+br+"%) contrast("+con+"%)"
         context.drawImage(video, 0, 0, 640,
             480);
+            img.src=canvas.toDataUrl();
     });     
     var context2 = canvas2.getContext('2d');
     snap2.addEventListener("click",
@@ -237,5 +240,35 @@
     {
         var val = e.value;
         video3.setAttribute("style", "filter: contrast("+val+"%);");
+    }
+
+    function post(){
+        const name = document.getElementsByName('nombre')[0].value;
+        const phone = document.getElementsByName('telefono')[0].value;
+        const license_plate = document.getElementsByName('placa')[0].value;
+        const motive = document.getElementsByName('motivo')[0].value;
+        const resident = document.getElementsByName('idr')[0].value;
+        let data = new FormData();
+        data.append('name',name);
+        data.append('phone',phone);
+        data.append('license_plate',license_plate);
+        data.append('motive',motive);
+        data.append('resident',resident);
+        data.append('ine',img);
+        let _data = {
+            name: document.getElementsByName('nombre')[0].value,
+            phone: document.getElementsByName('telefono')[0].value,
+            license_plate: document.getElementsByName('placa')[0].value,
+            motive: document.getElementsByName('motivo')[0].value,
+            resident: document.getElementsByName('idr')[0].value,
+        }
+
+fetch('api/operacion', {
+  method: "POST",
+  body: data,
+})
+.then(response => response.json()) 
+.then(json => console.log(json))
+.catch(err => console.log(err));
     }
 </script>

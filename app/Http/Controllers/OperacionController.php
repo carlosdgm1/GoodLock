@@ -4,8 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Residentes;
 use App\Models\Visita;
-use Illuminate\Http\Request;
-
+use Symfony\Component\HttpFoundation\Request;
 class OperacionController extends Controller
 {
     public function index()
@@ -27,5 +26,10 @@ class OperacionController extends Controller
 
         $CV->save();
         return redirect()->route('index-visitante');
+    }
+
+    public function store(Request $request)
+    {
+        dd($request);
     }
 }
