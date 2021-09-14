@@ -24,10 +24,6 @@
                                     <div class="card-body">
                                         <center><h5 class="card-title">Camara Ine</h5></center>
                                         <center><button id="snap" class="btn btn-dark">CAPTURAR</button></center>
-
-                                        <!-- Webcam video snapshot -->
-                                        
-
                                     </div>
                                     </div>
                                     
@@ -37,15 +33,16 @@
 
                                     <div class="card-body">
                                         <center><h5 class="card-title">Camara Placas</h5></center>
-                                        <center><input type="submit" value="CAPTURAR" name="guardar" class="btn btn-dark"</center>
+                                        <center><button id="snap2" class="btn btn-dark">CAPTURAR</button></center>
                                     </div>
                                     </div>
+                                    
                                     <div class="card">
                                         <video style="background: black url(loader.gif) center no-repeat;" id="remoteVideo2" width="800" height="450" autoplay="" playsinline="" muted="" controls=""></video>
                                         
                                         <div class="card-body">
                                         <center><h5 class="card-title">Frente de calle</h5></center>
-                                        <center><input type="submit" value="CAPTURAR" name="guardar" class="btn btn-dark"</center>
+                                        <center><button id="snap3" class="btn btn-dark">CAPTURAR</button></center>
                                     </div>
                                     </div>  
                                 </div>
@@ -56,14 +53,12 @@
                                 <div class="card-group">
                                     <div class="card">
                                     <canvas id="canvas" width="640" height="480"></canvas>
-                                    <div class="card-body">
-                                        <center><h5 class="card-title">Foto ine</h5></center>
-                                        <center><button id="snap" class="btn btn-dark">GUARDAR</button></center>
-                                    </div>
                                     </div>
                                     <div class="card">
+                                        <canvas id="canvas2" width="640" height="480"></canvas>
                                     </div>
                                     <div class="card">
+                                        <canvas id="canvas3" width="640" height="480"></canvas>
                                     </div>
                                 </div>
 
@@ -118,8 +113,14 @@
 'use strict';
 
 const video = document.getElementById('video');
+const video2 = document.getElementById('remoteVideo');
+const video3 = document.getElementById('remoteVideo2');
 const canvas = document.getElementById('canvas');
+const canvas2 = document.getElementById('canvas2');
+const canvas3 = document.getElementById('canvas3');
 const snap = document.getElementById("snap");
+const snap2 = document.getElementById("snap2");
+const snap3 = document.getElementById("snap3");
 const errorMsgElement = document.querySelector('span#errorMsg');
 
 const constraints = {
@@ -154,9 +155,20 @@ init();
 //         context.drawImage(video, 0, 0, 640, 480);
 // });
 // Draw image
+
 var context = canvas.getContext('2d');
 snap.addEventListener("click", function() {
         context.drawImage(video, 0, 0, 640, 480);
+});
+
+var context2 = canvas2.getContext('2d');
+snap2.addEventListener("click", function() {
+        context2.drawImage(video2, 0, 0, 640, 480);
+});
+
+var context3 = canvas3.getContext('2d');
+snap3.addEventListener("click", function() {
+        context3.drawImage(video3, 0, 0, 640, 480);
 });
 
 </script>
