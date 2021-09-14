@@ -26,6 +26,11 @@
                                             <h5 class="card-title">Camara Ine</h5>
                                         </center>
                                         <center><button id="snap" class="btn btn-dark">CAPTURAR</button></center>
+                                        <br>
+                                        <label for="brightnesswebcam" class="form-label">Brillo</label>
+                                        <input onchange="brightw(this)" min="0" max="200" type="range" class="form-range" id="brightnesswebcam" step="5">
+                                        <label for="contrastwebcam" class="form-label">Contraste</label>
+                                        <input onchange="contrastw(this)" min="0" max="200" type="range" class="form-range" id="contrastwebcam" step="5">
                                     </div>
                                 </div>
 
@@ -42,7 +47,9 @@
                                         <center><button id="snap2" class="btn btn-dark">CAPTURAR</button></center>
                                         <br>
                                         <label for="brightnesslicense" class="form-label">Brillo</label>
-                                        <input type="range" class="form-range" id="brightnesslicense" step="5">
+                                        <input onchange="brightl(this)" min="0" max="200" type="range" class="form-range" id="brightnesslicense" step="5">
+                                        <label for="contrastlicense" class="form-label">Contraste</label>
+                                        <input onchange="contrastl(this)" min="0" max="200" type="range" class="form-range" id="contrastlicense" step="5">
                                     </div>
                                 </div>
                                 <div class="card">
@@ -55,6 +62,11 @@
                                             <h5 class="card-title">Frente de calle</h5>
                                         </center>
                                         <center><button id="snap3" class="btn btn-dark">CAPTURAR</button></center>
+                                        <br>
+                                        <label for="brightnesslicense" class="form-label">Brillo</label>
+                                        <input onchange="brights(this)" min="0" max="200" type="range" class="form-range" id="brightnessstreet" step="5">
+                                        <label for="contraststreet" class="form-label">Contraste</label>
+                                        <input onchange="contrasts(this)" min="0" max="200" type="range" class="form-range" id="contraststreet" step="5">
                                     </div>
                                 </div>
                             </div>
@@ -174,25 +186,56 @@
     var context = canvas.getContext(
         '2d'); //
     snap.addEventListener("click", function() { //
+        const br=document.getElementById('brightnesswebcam').value;
+        const con=document.getElementById('contrastwebcam').value;
+        context.filter = "brightness("+br+"%) contrast("+con+"%)"
         context.drawImage(video, 0, 0, 640,
             480);
-    }); // Draw image
-    var context = canvas.getContext('2d');
-    snap.addEventListener("click", function() {
-        context.drawImage(video, 0, 0, 640, 480);
-    });
+    });     
     var context2 = canvas2.getContext('2d');
     snap2.addEventListener("click",
         function() {
+        const br=document.getElementById('brightnesslicense').value;
+        const con=document.getElementById('contrastlicense').value;
+        context2.filter = "brightness("+br+"%) contrast("+con+"%)"
             context2.drawImage(video2, 0, 0, 640, 480);
         });
     var context3 = canvas3.getContext('2d');
     snap3.addEventListener("click", function() {
+        const br=document.getElementById('brightnessstreet').value;
+        const con=document.getElementById('contraststreet').value;
+        context3.filter = "brightness("+br+"%) contrast("+con+"%)"
         context3.drawImage(video3, 0, 0, 640, 480);
     });
-    const brightl = document.getElementById("brightnesslicense");
-    const videol = document.getElementById("brightnesslicense");
-    brightl.addEventListener("change", (event) => {
-        videol.style.filter = "brigtness(" + event.target.value + "%)";
-    });
+    function brightw(e)
+    {
+        var val = e.value;
+        video.setAttribute("style", "filter: brightness("+val+"%);");
+    }
+    function brightl(e)
+    {
+        var val = e.value;
+        video2.setAttribute("style", "filter: brightness("+val+"%);");
+    }
+    function brights(e)
+    {
+        var val = e.value;
+        video3.setAttribute("style", "filter: brightness("+val+"%);");
+    }
+    
+    function contrastw(e)
+    {
+        var val = e.value;
+        video.setAttribute("style", "filter: contrast("+val+"%);");
+    }
+    function contrastl(e)
+    {
+        var val = e.value;
+        video2.setAttribute("style", "filter: contrast("+val+"%);");
+    }
+    function contrasts(e)
+    {
+        var val = e.value;
+        video3.setAttribute("style", "filter: contrast("+val+"%);");
+    }
 </script>
