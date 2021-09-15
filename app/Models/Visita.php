@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Symfony\Component\HttpFoundation\Request;
 
 class Visita extends Model
 {
@@ -19,4 +20,9 @@ class Visita extends Model
         ];
     
     protected $table = 'visitantes';
+
+    public static function saveVisita(Request $request){
+        dd($request->ine);
+        $this->fill($request);
+    }
 }

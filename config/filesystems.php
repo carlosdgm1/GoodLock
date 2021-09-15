@@ -41,7 +41,24 @@ return [
             'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
         ],
-
+        'ine' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/ine'),
+            'url' => env('APP_URL').'/storage/ine',
+            'visibility' => 'public',
+        ],
+        'cara' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/cara'),
+            'url' => env('APP_URL').'/storage/cara',
+            'visibility' => 'public',
+        ],
+        'placa' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/placa'),
+            'url' => env('APP_URL').'/storage/placa',
+            'visibility' => 'public',
+        ],
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),

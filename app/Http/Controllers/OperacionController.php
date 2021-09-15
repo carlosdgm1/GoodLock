@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Residentes;
 use App\Models\Visita;
 use Symfony\Component\HttpFoundation\Request;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 class OperacionController extends Controller
 {
     public function index()
@@ -30,6 +32,34 @@ class OperacionController extends Controller
 
     public function store(Request $request)
     {
-        dd($request);
+        $image_64 = $request->ine; //your base64 encoded data
+        $extension = explode('/', explode(':', substr($image_64, 0, strpos($image_64, ';')))[1])[1];   // .jpg .png .pdf
+        $replace = substr($image_64, 0, strpos($image_64, ',')+1); 
+       $image = str_replace($replace, '', $image_64); 
+       $image = str_replace(' ', '+', $image);
+       $imageName = Str::random(10).'.'.$extension;
+       Storage::disk('ine')->put($imageName, base64_decode($image));    
+       $request->ine=$imageName;
+   
+       $image_64 = $request->cara; //your base64 encoded data
+       $extension = explode('/', explode(':', substr($image_64, 0, strpos($image_64, ';')))[1])[1];   // .jpg .png .pdf     
+       $replace = substr($image_64, 0, strpos($image_64, ',')+1);      
+     // find substring fro replace here eg: data:image/png;base64,     
+      $image = str_replace($replace, '', $image_64);      
+      $image = str_replace(' ', '+', $image);      
+      $imageName = Str::random(10).'.'.$extension;     
+      Storage::disk('cara')->put($imageName, base64_decode($image));
+      $request->cara=$imageName;
+
+      $image_64 = $request->placa; //your base64 encoded data
+      $extension = explode('/', explode(':', substr($image_64, 0, strpos($image_64, ';')))[1])[1];   // .jpg .png .pdf
+      $replace = substr($image_64, 0, strpos($image_64, ',')+1);     
+    // find substring fro replace here eg: data:image/png;base64,
+      $image = str_replace($replace, '', $image_64);     
+     $image = str_replace(' ', '+', $image);     
+     $imageName = Str::random(10).'.'.$extension;    
+     Storage::disk('placa')->put($imageName, base64_decode($image));
+     $request->placa=$imageName;
+     Visita::saveVisita($request);
     }
 }
