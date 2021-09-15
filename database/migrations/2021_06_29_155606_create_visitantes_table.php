@@ -20,6 +20,9 @@ class CreateVisitantesTable extends Migration
             $table->string('ine');
             $table->string('motivo');
             $table->string('placa');
+            $table->string('placa_foto');
+            $table->string('ine_foto');
+            $table->string('cara_foto');
             $table->date('fecha');
             $table->unsignedBigInteger('idr');
             $table->foreign('idr')->references('id')->on('residenets');
