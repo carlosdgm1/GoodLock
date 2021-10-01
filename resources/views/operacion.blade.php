@@ -243,31 +243,35 @@
     }
 
     function post(){
-        const name = document.getElementsByName('nombre')[0].value;
-        const phone = document.getElementsByName('telefono')[0].value;
-        const license_plate = document.getElementsByName('placa')[0].value;
-        const motive = document.getElementsByName('motivo')[0].value;
-        const resident = document.getElementsByName('idr')[0].value;
-        
+        const nombre = document.getElementsByName('nombre')[0].value;
+        const telefono = document.getElementsByName('telefono')[0].value;
+        const ine = document.getElementsByName('ine')[0].value;
+        const fecha = document.getElementsByName('fecha')[0].value;
+        const placa = document.getElementsByName('placa')[0].value;
+        const motivo = document.getElementsByName('motivo')[0].value;
+        const idr = document.getElementsByName('idr')[0].value;
+
         var dataURL = canvas.toDataURL("");
         var dataURL2 = canvas2.toDataURL("");
         var dataURL3 = canvas3.toDataURL("");
         let data = new FormData();
-        data.append('name',name);
-        data.append('phone',phone);
-        data.append('license_plate',license_plate);
-        data.append('motive',motive);
-        data.append('resident',resident);
-        data.append('ine',dataURL);
-        data.append('placa',dataURL2);
-        data.append('cara',dataURL3);
+        data.append('nombre',nombre);
+        data.append('telefono',telefono);
+        data.append('ine',ine);
+        data.append('fecha',fecha);
+        data.append('placa',placa);
+        data.append('motivo',motivo);
+        data.append('idr',idr);
+        data.append('ine_foto',dataURL);
+        data.append('placa_foto',dataURL2);
+        data.append('cara_foto',dataURL3);
 
 
         fetch('api/operacion', {
             method: "POST",
             body: data,
         })
-        .then(response => response.json()) 
+        .then(response => response) 
         .then(json => console.log(json))
         .catch(err => console.log(err));
             }

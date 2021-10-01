@@ -31,6 +31,17 @@
                         <div class="input-group mb-3">
                             <input readonly value="{{$itemR->idr}}" onkeyup="javascript:this.value=this.value.toUpperCase();" style="margin: 2px" required placeholder="Placa" name="placa"  type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
                         </div>
+
+                        <div class="input-group mb-3">
+                          <img src="{{URL::asset("storage/ine/{$itemR->ine_foto}")}}" alt="profile Pic" height="200" width="200">
+                        </div>
+                        <div class="input-group mb-3">
+                          <img src="{{URL::asset("storage/placa/{$itemR->placa_foto}")}}" alt="profile Pic" height="200" width="200">
+                        </div>
+                          <div class="input-group mb-3">
+
+                          <img src="{{URL::asset("storage/cara/{$itemR->cara_foto}")}}" alt="profile Pic" height="200" width="200">
+                        </div>
                 
                         <div class="form-floating">
                         <textarea readonly name="motivo" class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px">{{$itemR->motivo}}</textarea>

@@ -20,9 +20,9 @@ class RegisteredUserController extends Controller
      */
     public function create()
     {
-        // if(Auth::check()){
+        if(Auth::check()){
         return view('auth.register');
-        // }
+        }
     }
 
     /**

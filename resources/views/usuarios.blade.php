@@ -41,7 +41,7 @@
                                 <td>{{$itemR->name}}</td>
                                 <td>{{$itemR->email}}</td>
                                 <td>{{$itemR->nivel}}</td>
-                                <td>{{$itemR->created_at->format('Y-m-d')}}</td>
+                                <td>{{$itemR->created_at}}</td>
                                 <td><a class="btn btn-danger" href="">Eliminar</a></td>
                                 </tr>
                                 @endforeach

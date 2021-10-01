@@ -53,7 +53,7 @@ class OperacionController extends Controller
         Storage::disk('cara')->put($imageName, base64_decode($image));
         $request->cara_foto = $imageName;
 
-        $image_64 = $request->placa_foto_foto; //your base64 encoded data
+        $image_64 = $request->placa_foto; //your base64 encoded data
         $extension = explode('/', explode(':', substr($image_64, 0, strpos($image_64, ';')))[1])[1];   // .jpg .png .pdf
         $replace = substr($image_64, 0, strpos($image_64, ',') + 1);
         // find substring fro replace here eg: data:image/png;base64,
@@ -62,6 +62,7 @@ class OperacionController extends Controller
         $imageName = Str::random(10) . '.' . $extension;
         Storage::disk('placa')->put($imageName, base64_decode($image));
         $request->placa_foto = $imageName;
-        Visita::saveVisita($request);
+        $visita = new Visita();
+        $visita->saveVisita($request);
     }
 }
