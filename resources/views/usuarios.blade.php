@@ -14,10 +14,9 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
-                    @include('components.menu-busqueda')
                     <div class="container">
                         <main class="form-signin">
-                            <p class="fs-2">Buscar Personal</p>
+                            <p class="fs-2">Buscar Usuario</p>
 
                             <a type="submit" href="{{route('index-register')}}" class="btn btn-dark">Crear nuevo usuario</a>
                             
@@ -30,8 +29,6 @@
                                 <th>Nombre</th>
                                 <th>Correo</th>
                                 <th>Nivel</th>
-                                <th>Creado</th>
-                                <th>Eliminar</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -41,8 +38,6 @@
                                 <td>{{$itemR->name}}</td>
                                 <td>{{$itemR->email}}</td>
                                 <td>{{$itemR->nivel}}</td>
-                                <td>{{$itemR->created_at}}</td>
-                                <td><a class="btn btn-danger" href="">Eliminar</a></td>
                                 </tr>
                                 @endforeach
                             </tbody>

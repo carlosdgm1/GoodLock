@@ -2,6 +2,12 @@
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Operacion') }}
+
+            <button type="button" class="btn btn-primary ml-4" data-bs-toggle="modal" data-bs-target="#exampleModal">
+               Buscar visitas abiertas
+            </button>
+
+            @include('components.modalcerrarV')
         </h2>
     </x-slot>
 
@@ -131,8 +137,7 @@
                                 <option selected>Seleccione al residente que visita</option>
 
                                 @foreach ($idr as $item)
-                                    <option value="{{ $item['id'] }}">{{ $item['nombre'] }} vive en
-                                        {{ $item['direccion'] }}</option>
+                                    <option value="{{ $item['id'] }}">{{ $item['nombre'] }}</option>
                                 @endforeach
 
 
@@ -147,10 +152,13 @@
                         </div>
 
                         <br>
-                        <center><input onclick="post()" value="GUARDAR DATOS" name="guardar" class="btn btn-dark"
-                                </center>
+                        <center><input type="submit" onclick="post()" value="GUARDAR DATOS" name="guardar" class="btn btn-dark">
+                       
                     </form>
-                    <a href="/open">Abrir</a>
+                    
+                        <a class="btn btn-dark ml-1" href="/open">ABRIR Y CERRAR PLUMA</a>
+
+                    </center>
                     </main>
                 </div>
             </div>
@@ -158,6 +166,7 @@
     </div>
     </div>
 </x-app-layout>
+
 
 <script>
     'use strict';

@@ -51,6 +51,9 @@ Route::post('/Busqueda/Residentes/Coresidente', [BusquedaController::class, 'cre
 Route::put('/Administracion/Buscar_personal/Detallado/{id}', [BusquedaController::class, 'updateP'])->name('update-personal');
 Route::put('/Administracion/Buscar_residente/Detallado/{id}', [BusquedaController::class, 'updateR'])->name('update-residente');
 Route::put('/Administracion/Buscar_visitantes/Detallado/{id}', [BusquedaController::class, 'updateV'])->name('update-visitantes');
+Route::put('/Configuracion/Ip/{id}', [ConfiguracionController::class, 'update'])->name('modificar-cam');
+Route::put('/Operacion/Actualizar_estatus/{id}', [OperacionController::class, 'estatus'])->name('estatusV');
+
 //Delete
 Route::delete('/Administracion/Buscar_personal/Eliminar/{id}', [BusquedaController::class, 'deleteP'])->name('eliminar-personal');
 Route::delete('/Administracion/Buscar_residente/Eliminar/{id}', [BusquedaController::class, 'deleteR'])->name('eliminar-residente');
@@ -69,6 +72,6 @@ Route::post('/Usuarios/Registrar/usuario', [RegisteredUserController::class, 'st
 
 //CONFIGURACION
 Route::get('/Configuracion', [ConfiguracionController::class, 'index'])->name('index-configuracion');
-Route::put('/Configuracion/Ip/{id}', [ConfiguracionController::class, 'update'])->name('update-configuracion');
+
 
 Route::get('/open', [OperacionController::class, 'openGate']);

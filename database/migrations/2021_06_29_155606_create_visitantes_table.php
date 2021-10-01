@@ -20,12 +20,13 @@ class CreateVisitantesTable extends Migration
             $table->string('ine');
             $table->string('motivo');
             $table->string('placa');
-            $table->string('placa_foto');
-            $table->string('ine_foto');
-            $table->string('cara_foto');
+            $table->string('placa_foto')->nullable();
+            $table->string('ine_foto')->nullable();
+            $table->string('cara_foto')->nullable();
             $table->date('fecha');
-            $table->unsignedBigInteger('idr');
+            $table->unsignedBigInteger('idr')->nullable();
             $table->foreign('idr')->references('id')->on('residenets');
+            $table->string('estatus');
             $table->timestamps();
         });
     }

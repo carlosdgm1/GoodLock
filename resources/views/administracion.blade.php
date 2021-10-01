@@ -13,7 +13,7 @@
                     <div class="container text-center">
                         <main class="form-signin">
                             <form>
-                                <center><img src="{{asset('img/logo.png')}}" style="width: 90px; height: 90px;"></center>
+                                <center><img src="{{asset('img/logo.png')}}" style="width: 140px; height: 90px;"></center>
                                 <br>
                               <h1 class="h3 mb-3 fw-normal">INTRANET</h1>
                                 <p>Bienvenido {{Auth::user()->name}} al apartado de <p class="fw-bold">ADMINISTRACION</p></p>

@@ -20,6 +20,6 @@ class ConfiguracionController extends Controller
         $Cam->placa = request('placa');
         $Cam->save();
         
-        return redirect()->back();
+        return back();
     }
 }

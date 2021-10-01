@@ -8,17 +8,22 @@
             </div>
             <div class="modal-body">
     
-                <form method="post" action="{{route('update-configuracion', $cam->id)}}">
+                <form method="post" action="{{route('modificar-cam', $cam->id)}}">
                     @csrf @method('put')
                
+                    @foreach ($camara as $item)
+                        
+                   
                     <div class="mb-3">
                       <label for="exampleFormControlInput1" class="form-label">Frente de calle</label>
-                      <input type="text" name="frente" class="form-control" id="frente">
+                      <input type="text" name="frente" class="form-control" id="frente" value="{{$item->frente}}">
                     </div>
                     <div class="mb-3">
                       <label for="exampleFormControlInput1" class="form-label">Camara Placas</label>
-                      <input type="text" name="placa" class="form-control" id="placa">
+                      <input type="text" name="placa" class="form-control" id="placa" value="{{$item->frente}}"> 
                     </div>
+
+                    @endforeach
     
             </div>
             <div class="modal-footer">

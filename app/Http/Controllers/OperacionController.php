@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Camaras;
+use App\Models\Personal;
 use App\Models\Residentes;
 use App\Models\Visita;
 use Symfony\Component\HttpFoundation\Request;
@@ -16,7 +18,9 @@ class OperacionController extends Controller
     public function index()
     {
         $idr = Residentes::all();
-        return view('operacion', compact('idr'));
+        $cam = Camaras::all();
+        $BV = Visita::all()->where('estatus', 'abierta');
+        return view('operacion', compact('idr', 'BV', 'cam'));
     }
 
     public function createV()
@@ -30,6 +34,7 @@ class OperacionController extends Controller
         $CV->placa = request('placa');
         $CV->fecha = request('fecha');
         $CV->idr = request('idr');
+        $CV->estatus = 'abierta';
 
         $CV->save();
         return redirect()->route('index-visitante');
@@ -81,4 +86,21 @@ class OperacionController extends Controller
         $visita = new Visita();
         $visita->saveVisita($request);
     }
+
+
+    public function estatus($id){
+        
+        $idr = Residentes::all();
+        $BV = Visita::all()->where('estatus', 'abierta');
+        
+            $estatus = Visita::find($id);
+                $estatus->estatus = ('cerrada');
+                $estatus->save();
+
+
+                return back();
+
+            }
+
+
 }

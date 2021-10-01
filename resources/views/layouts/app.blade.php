@@ -53,6 +53,7 @@
     <script src="{{ asset('js/bootstrap.min.js') }}" defer></script>
 
     <script type="text/javascript">
+
         webrtcPlayer = new UnrealWebRTCPlayer("remoteVideo", "placa", "", "192.168.100.132", "5119", false, true, "tcp");
 
         webrtcPlayer2 = new UnrealWebRTCPlayer("remoteVideo2", "frente", "", "192.168.100.132", "5119", false, true, "tcp");
@@ -61,6 +62,7 @@
         webrtcPlayer
         .Play(); //Start playing automatically when webpage loads. Notice that video element has a "muted" attribute; this is video-only stream anyway. A muted attribute helps to overcome Chrome's autoplay policy, and is not always needed, as described in http://www.umediaserver.net/phpBB3/viewtopic.php?f=29&t=3578
         webrtcPlayer2.Play();
+        
     </script>
 
 </body>
