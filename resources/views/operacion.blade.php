@@ -91,7 +91,8 @@
                             </div>
                     </div>
 
-
+                        <br>
+                        
                     <form method="POST" class="formulario_guardar" action="{{ route('crear-visitante') }}">
                         @csrf
                         <div class="input-group mb-3">
