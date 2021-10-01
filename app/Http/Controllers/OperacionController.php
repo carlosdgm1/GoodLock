@@ -7,6 +7,9 @@ use App\Models\Visita;
 use Symfony\Component\HttpFoundation\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
+use lepiaf\SerialPort\SerialPort;
+use lepiaf\SerialPort\Parser\SeparatorParser;
+use lepiaf\SerialPort\Configure\TTYConfigure;
 
 class OperacionController extends Controller
 {
@@ -30,6 +33,19 @@ class OperacionController extends Controller
 
         $CV->save();
         return redirect()->route('index-visitante');
+    }
+
+    public function openGate()
+    {
+        $configure = new TTYConfigure();
+        $configure->setOption("9600");
+        $serialPort = new SerialPort(new SeparatorParser("\n"), $configure);
+        $serialPort->open("COM1");
+        // $serialPort->write("P");
+        // $serialPort->write("Q");
+        $serialPort->write(pack("H", 0x50));
+
+        $serialPort->close();
     }
 
     public function store(Request $request)

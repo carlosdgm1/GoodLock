@@ -27,7 +27,7 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
 
 
 //ADMINISTRACION
@@ -71,3 +71,4 @@ Route::post('/Usuarios/Registrar/usuario', [RegisteredUserController::class, 'st
 Route::get('/Configuracion', [ConfiguracionController::class, 'index'])->name('index-configuracion');
 Route::put('/Configuracion/Ip/{id}', [ConfiguracionController::class, 'update'])->name('update-configuracion');
 
+Route::get('/open', [OperacionController::class, 'openGate']);
