@@ -72,6 +72,3 @@ Route::post('/Usuarios/Registrar/usuario', [RegisteredUserController::class, 'st
 
 //CONFIGURACION
 Route::get('/Configuracion', [ConfiguracionController::class, 'index'])->name('index-configuracion');
-
-
-Route::get('/open', [OperacionController::class, 'openGate']);

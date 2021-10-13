@@ -2,11 +2,16 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Auth\LoginRequest;
-use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
+use lepiaf\SerialPort\SerialPort;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use App\Providers\RouteServiceProvider;
+use Illuminate\Support\Facades\Session;
+use App\Http\Requests\Auth\LoginRequest;
+use Illuminate\Support\Facades\Config;
+use lepiaf\SerialPort\Configure\TTYConfigure;
+use lepiaf\SerialPort\Parser\SeparatorParser;
 
 class AuthenticatedSessionController extends Controller
 {

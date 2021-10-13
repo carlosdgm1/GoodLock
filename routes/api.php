@@ -19,4 +19,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/operacion',[OperacionController::class, 'store']);
+Route::post('/operacion', [OperacionController::class, 'store']);
+
+Route::get('/open', [OperacionController::class, 'openGate']);
+
+
+Route::get('/close', [OperacionController::class, 'closeGate']);

@@ -4,7 +4,7 @@
             {{ __('Operacion') }}
 
             <button type="button" class="btn btn-primary ml-4" data-bs-toggle="modal" data-bs-target="#exampleModal">
-               Buscar visitas abiertas
+                Buscar visitas abiertas
             </button>
 
             @include('components.modalcerrarV')
@@ -103,8 +103,8 @@
                             </div>
                     </div>
 
-                        <br>
-                        
+                    <br>
+
                     <form method="POST" class="formulario_guardar" action="{{ route('crear-visitante') }}">
                         @csrf
                         <div class="input-group mb-3">
@@ -152,11 +152,13 @@
                         </div>
 
                         <br>
-                        <center><input type="submit" onclick="post()" value="GUARDAR DATOS" name="guardar" class="btn btn-dark">
-                       
+                        <center><input type="submit" onclick="post()" value="GUARDAR DATOS" name="guardar"
+                                class="btn btn-dark">
+
                     </form>
-                    
-                        <a class="btn btn-dark ml-1" href="/open">ABRIR Y CERRAR PLUMA</a>
+
+                    <a class="btn btn-dark ml-1" href="/api/open">ABRIR PLUMA</a>
+                    <a class="btn btn-dark ml-1" href="/api/close">CERRAR PLUMA</a>
 
                     </center>
                     </main>

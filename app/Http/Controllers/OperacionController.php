@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Visita;
 use App\Models\Camaras;
 use App\Models\Personal;
 use App\Models\Residentes;
-use App\Models\Visita;
-use Symfony\Component\HttpFoundation\Request;
 use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Storage;
 use lepiaf\SerialPort\SerialPort;
+use Illuminate\Support\Facades\Storage;
+use Symfony\Component\HttpFoundation\Request;
 use lepiaf\SerialPort\Parser\SeparatorParser;
 use lepiaf\SerialPort\Configure\TTYConfigure;
 
@@ -25,7 +25,6 @@ class OperacionController extends Controller
 
     public function createV()
     {
-
         $CV = new Visita();
         $CV->nombre = request('nombre');
         $CV->telefono = request('telefono');
@@ -45,12 +44,22 @@ class OperacionController extends Controller
         $configure = new TTYConfigure();
         $configure->setOption("9600");
         $serialPort = new SerialPort(new SeparatorParser("\n"), $configure);
-        $serialPort->open("COM1");
-        // $serialPort->write("P");
-        // $serialPort->write("Q");
-        $serialPort->write(pack("H", 0x50));
-
+        $serialPort->open("COM5");
+        sleep(2);
+        $serialPort->write("a");
         $serialPort->close();
+        return response()->json('abierto');
+    }
+    public function closeGate()
+    {
+        $configure = new TTYConfigure();
+        $configure->setOption("9600");
+        $serialPort = new SerialPort(new SeparatorParser("\n"), $configure);
+        $serialPort->open("COM5");
+        sleep(2);
+        $serialPort->write("z");
+        $serialPort->close();
+        return response()->json('cerrado alv');
     }
 
     public function store(Request $request)
@@ -88,19 +97,17 @@ class OperacionController extends Controller
     }
 
 
-    public function estatus($id){
-        
+    public function estatus($id)
+    {
+
         $idr = Residentes::all();
         $BV = Visita::all()->where('estatus', 'abierta');
-        
-            $estatus = Visita::find($id);
-                $estatus->estatus = ('cerrada');
-                $estatus->save();
+
+        $estatus = Visita::find($id);
+        $estatus->estatus = ('cerrada');
+        $estatus->save();
 
 
-                return back();
-
-            }
-
-
+        return back();
+    }
 }
