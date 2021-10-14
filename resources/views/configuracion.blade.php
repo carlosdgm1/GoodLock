@@ -60,7 +60,7 @@
                                             </select>
                                         </div>
                                         <div class="col-3">
-                                            <input type="submit" class="btn btn-sm btn-primary" value="Interactuar">
+                                            <input type="submit" class="btn btn-sm btn-primary" value="Guardar">
                                         </div>
                                     </div>
 
