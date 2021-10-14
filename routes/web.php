@@ -75,4 +75,4 @@ Route::post('/Usuarios/Registrar/usuario', [RegisteredUserController::class, 'st
 Route::get('/Configuracion', [ConfiguracionController::class, 'index'])->name('index-configuracion');
 
 //ARDUINO
-Route::put('/Configuracion/Arduino/{id}', [Arduino::class, 'update'])->name('estatus-arduino');
+Route::put('/Configuracion/Arduino', [Arduino::class, 'update'])->name('estatus-arduino');
