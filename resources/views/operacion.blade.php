@@ -155,13 +155,19 @@
                         <center><input type="submit" onclick="post()" value="GUARDAR DATOS" name="guardar"
                                 class="btn btn-dark">
 
-                            </form>
+                    </form>
 
-                            <a class="btn btn-dark ml-1" href="/api/open">ABRIR PLUMA</a>
-                            
+                    <button class="btn btn-dark ml-1" onclick="fetch('api/open')
+                    .then(response => response)
+                    .then(json => console.log(json))
+                    .catch(err => console.log(err))">ABRIR PLUMA</button>
 
-                        </center>
-                        <a class="btn btn-sm btn-warning ml-1" href="/api/close">cerrar pluma</a>
+
+                    </center>
+                    <a class="btn btn-sm btn-warning ml-1" onclick="fetch('api/close')
+                    .then(response => response)
+                    .then(json => console.log(json))
+                    .catch(err => console.log(err))">cerrar pluma</a>
                     </main>
                 </div>
             </div>
@@ -258,6 +264,20 @@
     function contrasts(e) {
         var val = e.value;
         video3.setAttribute("style", "filter: contrast(" + val + "%);");
+    }
+
+    function open() {
+        fetch('api/open')
+            .then(response => response)
+            .then(json => console.log(json))
+            .catch(err => console.log(err));
+    }
+
+    function close() {
+        fetch('api/close')
+            .then(response => response)
+            .then(json => console.log(json))
+            .catch(err => console.log(err));
     }
 
     function post() {

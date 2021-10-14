@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Arduino;
 use App\Models\Visita;
 use App\Models\Camaras;
 use App\Models\Personal;
@@ -41,25 +42,27 @@ class OperacionController extends Controller
 
     public function openGate()
     {
+        $open = Arduino::where('estatus', 1)->first();
         $configure = new TTYConfigure();
         $configure->setOption("9600");
         $serialPort = new SerialPort(new SeparatorParser("\n"), $configure);
-        $serialPort->open("COM5");
+        $serialPort->open("COM4");
         sleep(2);
-        $serialPort->write("a");
+        $serialPort->write($open->abrir);
         $serialPort->close();
         return response()->json('abierto');
     }
     public function closeGate()
     {
+        $close = Arduino::where('estatus', 1)->first();
         $configure = new TTYConfigure();
         $configure->setOption("9600");
         $serialPort = new SerialPort(new SeparatorParser("\n"), $configure);
-        $serialPort->open("COM5");
+        $serialPort->open("COM4");
         sleep(2);
-        $serialPort->write("z");
+        $serialPort->write($close->cerrar);
         $serialPort->close();
-        return response()->json('cerrado alv');
+        return response()->json($close->cerrar);
     }
 
     public function store(Request $request)

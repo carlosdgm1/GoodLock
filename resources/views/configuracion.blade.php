@@ -13,60 +13,59 @@
                         <main class="form-signin">
                             <p class="fs-2">Configuracion</p>
                             <form>
-                                <p class="fs-4">Cambio de camaras</p>                               
-                                    <br>
-                                    <table id="example" class="table table-striped">
-                                        <thead>
-                                            <tr>
+                                <p class="fs-4">Cambio de camaras</p>
+                                <br>
+                                <table id="example" class="table table-striped">
+                                    <thead>
+                                        <tr>
                                             <th>Frente de calle</th>
                                             <th>Camara de placas</th>
                                             <th>Edicion</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                         @foreach($camara as $cam)
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($camara as $cam)
                                             <tr>
-                                            <td>{{$cam->frente}}</td>
-                                            <td>{{$cam->placa}}</td>
-                                            <td>
-                                             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-updateC-{{$cam->id}}">
-                                                 Modificar
-                                             </button>
-                                            </td>
+                                                <td>{{ $cam->frente }}</td>
+                                                <td>{{ $cam->placa }}</td>
+                                                <td>
+                                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                                        data-bs-target="#modal-updateC-{{ $cam->id }}">
+                                                        Modificar
+                                                    </button>
+                                                </td>
                                             </tr>
-                                              @include('components.modalcamaras')
-                                            @endforeach
-                                        </tbody>
-                                    </table>
-                                    <br>
-                                    <p class="fs-4">Puertos arduino</p>
-                                    <br>
-                                    <table id="example" class="table table-striped">
-                                        <thead>
-                                            <tr>
-                                            <th>Estatus</th>
-                                            <th>Abrir</th>
-                                            <th>Cerrar</th>
-                                            <th>Activar</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                         @foreach($arduino as $item)
-                                            <tr>
-                                            <td>{{$item->estatus}}</td>
-                                            <td>{{$item->abrir}}</td>
-                                            <td>{{$item->cerrar}}</td>
-                                            <td>
-                                            <form method="Post" action="{{route('estatus-arduino', $item)}}">
-                                                @csrf @method('put')
-                                                <input type="submit" class="btn btn-sm btn-primary" value="Interactuar">
-                                            </form>
-                                            </td>
-                                            </tr>
-                                              @include('components.modalcamaras')
-                                            @endforeach
-                                        </tbody>
-                                    </table>
+                                            @include('components.modalcamaras')
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                                <br>
+                                <p class="fs-4">Puertos arduino</p>
+                                <br>
+                                <form method="Post" action="{{ route('estatus-arduino') }}">
+                                    @csrf @method('put')
+                                    <div class="row">
+                                        <div class="col-3">
+                                            <select class="form-select" name="relay" id="relay"
+                                                aria-label="Default select example">
+                                                <option selected>Que relevador quieres usar</option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                                <option value="6">6</option>
+                                                <option value="7">7</option>
+                                                <option value="8">8</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-3">
+                                            <input type="submit" class="btn btn-sm btn-primary" value="Interactuar">
+                                        </div>
+                                    </div>
+
+
+                                </form>
                             </form>
                         </main>
                     </div>
