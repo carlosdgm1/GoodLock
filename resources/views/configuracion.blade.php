@@ -38,6 +38,35 @@
                                             @endforeach
                                         </tbody>
                                     </table>
+                                    <br>
+                                    <p class="fs-4">Puertos arduino</p>
+                                    <br>
+                                    <table id="example" class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                            <th>Estatus</th>
+                                            <th>Abrir</th>
+                                            <th>Cerrar</th>
+                                            <th>Activar</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                         @foreach($arduino as $item)
+                                            <tr>
+                                            <td>{{$item->estatus}}</td>
+                                            <td>{{$item->abrir}}</td>
+                                            <td>{{$item->cerrar}}</td>
+                                            <td>
+                                            <form method="Post" action="{{route('estatus-arduino', $item)}}">
+                                                @csrf @method('put')
+                                                <input type="submit" class="btn btn-sm btn-primary" value="Interactuar">
+                                            </form>
+                                            </td>
+                                            </tr>
+                                              @include('components.modalcamaras')
+                                            @endforeach
+                                        </tbody>
+                                    </table>
                             </form>
                         </main>
                     </div>

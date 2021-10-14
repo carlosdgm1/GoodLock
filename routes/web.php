@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdministracionController;
+use App\Http\Controllers\Arduino;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\BusquedaController;
 use App\Http\Controllers\ConfiguracionController;
@@ -72,3 +73,6 @@ Route::post('/Usuarios/Registrar/usuario', [RegisteredUserController::class, 'st
 
 //CONFIGURACION
 Route::get('/Configuracion', [ConfiguracionController::class, 'index'])->name('index-configuracion');
+
+//ARDUINO
+Route::put('/Configuracion/Arduino/{id}', [Arduino::class, 'update'])->name('estatus-arduino');

@@ -155,12 +155,13 @@
                         <center><input type="submit" onclick="post()" value="GUARDAR DATOS" name="guardar"
                                 class="btn btn-dark">
 
-                    </form>
+                            </form>
 
-                    <a class="btn btn-dark ml-1" href="/api/open">ABRIR PLUMA</a>
-                    <a class="btn btn-dark ml-1" href="/api/close">CERRAR PLUMA</a>
+                            <a class="btn btn-dark ml-1" href="/api/open">ABRIR PLUMA</a>
+                            
 
-                    </center>
+                        </center>
+                        <a class="btn btn-sm btn-warning ml-1" href="/api/close">cerrar pluma</a>
                     </main>
                 </div>
             </div>
